@@ -1,4 +1,4 @@
 
-# Hangman Consol Game
+# Hangman Console Game
 
-This is a simple hangman game you can play in the consol. It is programmed in C, developed inside a Linux Environment.
+This is a simple hangman game played in the console. It is programmed in C, developed inside a Linux Environment.
