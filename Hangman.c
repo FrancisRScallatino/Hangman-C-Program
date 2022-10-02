@@ -54,5 +54,28 @@ int main ()
         newLine();
     }
 
+    int buffSize = 100;
+    char *name= malloc(sizeof(char)*buffSize);
+    printf("You have chosen %s!\nWhat do you want you opponent to guess?\n", chosenCategory);
+    printf("Enter here: ");
+    fgets(name, buffSize, stdin);
+    scanf ("%[^\n]%*c", name);
+    
+    char *retype = malloc(sizeof(char)*30);
+    strcpy(retype, "y");
+    while(strcmp(retype, "y") == 0){
+        printf("\nYou chose \"%s\"\n", name);
+        printf("If you'd like to retype your answer, type \"y\", if not type anything else: ");
+        scanf("%c", retype);
+        if(strcmp(retype, "y") == 0){
+            printf("Enter here: ");
+            fgets(name, buffSize, stdin);
+            scanf ("%[^\n]%*c", name);
+        }else{
+            strcpy(retype, "n");
+        }
+    }
+    free(retype);
+
     return (0);
 }
