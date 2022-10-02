@@ -8,6 +8,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "Draw.h"
+
 void newLine(){printf("\n");}
 
 int isCategory(char **a, char *x, int n)
@@ -29,6 +31,8 @@ void printCategories(char **cat, int n)
     newLine();
 }
 
+void exitProgram(){exit(EXIT_SUCCESS);}
+
 int main ()
 {
     char *category[] = {"Movies", "TV", "Songs"};
@@ -45,6 +49,8 @@ int main ()
     newLine();
     
     while(!isCategory(category, chosenCategory, numOfCategories)){
+        if(strcmp(chosenCategory, "exit") == 0) exitProgram();
+
         printf("Whoops, that's not an acceptable cetegory!\n");
 
         printCategories(category, numOfCategories);
@@ -60,6 +66,8 @@ int main ()
     printf("Enter here: ");
     fgets(name, buffSize, stdin);
     scanf ("%[^\n]%*c", name);
+
+    if(strcmp(name, "exit") == 0) exitProgram();
     
     char *retype = malloc(sizeof(char)*30);
     strcpy(retype, "y");
@@ -67,15 +75,24 @@ int main ()
         printf("\nYou chose \"%s\"\n", name);
         printf("If you'd like to retype your answer, type \"y\", if not type anything else: ");
         scanf("%c", retype);
+
+        if(strcmp(name, "exit") == 0) exitProgram();
+
         if(strcmp(retype, "y") == 0){
             printf("Enter here: ");
             fgets(name, buffSize, stdin);
             scanf ("%[^\n]%*c", name);
+
+            if(strcmp(name, "exit") == 0) exitProgram();
         }else{
             strcpy(retype, "n");
         }
     }
     free(retype);
+    
+    //system("clear");
+
+    draw();
 
     return (0);
 }
