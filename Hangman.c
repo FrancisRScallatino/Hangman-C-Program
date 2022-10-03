@@ -9,6 +9,7 @@
 #include <string.h>
 
 #include "Draw.h"
+#include "Answer.h"
 
 void newLine(){printf("\n");}
 
@@ -91,6 +92,9 @@ int main ()
     free(retype);
     
     //system("clear");
+
+    Answer a = Answer_value(chosenCategory, name);
+    printf("\n%s\n", a.name);
 
     draw();
 
