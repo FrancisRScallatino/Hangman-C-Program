@@ -8,7 +8,13 @@ Answer Answer_value(char *category, char *name){
     Answer init = {};
 
     init.category = category;
+    init.name = name;
+    int gCap = 32;
+    init.guess = malloc(sizeof(char)*gCap);
+    init.gWrong = malloc(sizeof(char)*gCap);
+    init.wrongcount = 0;
 
+    /*
     //intialization of matrix of the tokenization of the given answer to guess
     int wordCount = 10;
     int cPerWord = 20;
@@ -24,6 +30,6 @@ Answer Answer_value(char *category, char *name){
         printf("New token: %s\n", init.nameToken[init.numOfTokens-1]);
         token = strtok_r(NULL, " ", &saveptr);
     }
-
+    */
     return init;
 }

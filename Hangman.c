@@ -7,24 +7,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 
 #include "Draw.h"
 #include "Answer.h"
+#include "InProc.h"
 
 void newLine(){printf("\n");}
 
-//checks the list of categories for the user-entered category
-int isCategory(char **a, char *x, int n)
-{
-    for(int i=0; i<n; i++){
-        if(!strcasecmp(x, a[i])) return 1;
-    }
-
-    return 0;
-}
-
-//prints all the vailable categories
+//prints all the available categories
 void printCategories(char **cat, int n)
 {
     printf("Acceptable categories include: ");
@@ -36,23 +26,6 @@ void printCategories(char **cat, int n)
 }
 
 void exitProgram(){exit(EXIT_SUCCESS);}
-
-void toLower(char *s, int n)
-{
-    for(int i=0; i<n; i++) s[i]= tolower(s[i]);
-}
-
-void capFirstChar(char *s, int n)
-{
-    s[0] = toupper(s[0]);
-    for(int i=1; i<n; i++){
-        if(s[i-1] != ' '){
-            s[i] = tolower(s[i]);
-        }else{
-            s[i] = toupper(s[i]);
-        }
-    }
-}
 
 int main ()
 {
@@ -94,7 +67,7 @@ int main ()
     if(strcmp(name, "exit") == 0) exitProgram();
     
     //make sure the prompt the user entered is really what they want their opponent to guess
-    char *retype = malloc(sizeof(char)*30);
+    char *retype = malloc(sizeof(char)*32);
     strcpy(retype, "y");
     while(strcmp(retype, "y") == 0){
         capFirstChar(name, strlen(name));       //normalize user-input of the prompt
@@ -118,8 +91,7 @@ int main ()
     
     //system("clear");
 
-    //Answer a = Answer_value(chosenCategory, name);
-    //printf("\n%s\n", a.name);
+    //Answer answer = Answer_value(chosenCategory, name);
 
     draw();
 

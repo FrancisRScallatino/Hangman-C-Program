@@ -1,10 +1,17 @@
+/**
+ * this module tracks all important user information
+ * throughout the games life cycle
+ */
+
 #ifndef ANSWER_H
 #define ANSWER_H
 
 typedef struct Answer{
-    char *category;
-    char **nameToken;
-    int numOfTokens;
+    char *category; //user-given category for the prompt
+    char *name;     //user-given prompt for player to guess
+    char *guess;    //array to store ALL guesses
+    int *gWrong;    //array to track if a guess in char *guess is wrong
+    int wrongcount; //number of wrong guesses
 }Answer;
 
 /**

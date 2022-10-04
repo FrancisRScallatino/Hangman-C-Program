@@ -1,7 +1,7 @@
 GC = gcc
 WFLAGS = -Wall -Werror -Wextra
 
-MYps: Hangman.o Draw.o Answer.o
+MYps: Hangman.o Draw.o Answer.o InProc.o
 	$(GC) $(WFLAGS) $^ -o Hangman
 
 Hangman.o: Hangman.c
@@ -13,8 +13,11 @@ Draw.o: Draw.c Draw.h
 Answer.o: Answer.c Answer.h
 	$(GC) $(WFLAGS) -c Answer.c
 
+InProc.o: InProc.c InProc.h
+	$(GC) $(WFLAGS) -c InProc.c
+
 clean:
 	rm -rf *.o Hangman HangmanD
 
-db: Hangman.o Draw.o Answer.o
+db: Hangman.o Draw.o Answer.o InProc.o
 	$(GC) $(WFLAGS) -g $^ -o HangmanD
