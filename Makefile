@@ -1,23 +1,20 @@
-GC = gcc
-WFLAGS = -Wall -Werror -Wextra
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra -g
 
 MYps: Hangman.o Draw.o Answer.o InProc.o
-	$(GC) $(WFLAGS) $^ -o Hangman
+	$(CC) $(CFLAGS) $^ -o Hangman
 
 Hangman.o: Hangman.c
-	$(GC) $(WFLAGS) -c $^
+	$(CC) $(CFLAGS) -c $^
 
 Draw.o: Draw.c Draw.h
-	$(GC) $(WFLAGS) -c Draw.c
+	$(CC) $(CFLAGS) -c Draw.c
 
 Answer.o: Answer.c Answer.h
-	$(GC) $(WFLAGS) -c Answer.c
+	$(CC) $(CFLAGS) -c Answer.c
 
 InProc.o: InProc.c InProc.h
-	$(GC) $(WFLAGS) -c InProc.c
+	$(CC) $(CFLAGS) -c InProc.c
 
 clean:
 	rm -rf *.o Hangman HangmanD
-
-db: Hangman.o Draw.o Answer.o InProc.o
-	$(GC) $(WFLAGS) -g $^ -o HangmanD

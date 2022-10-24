@@ -1,2 +1,5 @@
 *.o
 Hangman
+*.txt
+.vscode
+Hangman-C-Program.code-workspace
