@@ -1,7 +1,8 @@
 #include <stdio.h>
 
-void draw()
+void draw(int wGuessCount)
 {
-    printf("--------\n");
+    printf("\n--------\n");
     printf("|      |\n");
+    wGuessCount<1 ? printf("|\n") : printf("|      o\n");
 }

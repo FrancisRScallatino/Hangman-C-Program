@@ -10,8 +10,8 @@ Answer Answer_value(char *category, char *name){
     init.category = category;
     init.name = name;
     int gCap = 32;
-    init.guess = malloc(sizeof(char)*gCap);
-    init.gWrong = malloc(sizeof(char)*gCap);
+    init.guess = calloc(sizeof(char), gCap);
+    init.gWrong = calloc(sizeof(char), gCap);
     init.wrongcount = 0;
 
     /*

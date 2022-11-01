@@ -5,7 +5,7 @@ MYps: Hangman.o Draw.o Answer.o InProc.o
 	$(CC) $(CFLAGS) $^ -o Hangman
 
 Hangman.o: Hangman.c
-	$(CC) $(CFLAGS) -c $^
+	$(CC) $(CFLAGS) -c Hangman.c
 
 Draw.o: Draw.c Draw.h
 	$(CC) $(CFLAGS) -c Draw.c
