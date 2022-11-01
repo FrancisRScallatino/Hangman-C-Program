@@ -1,13 +1,15 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include <strings.h>
 #include <ctype.h>
 
 int isCategory(char **a, char *x, int n)
 {
     for(int i=0; i<n; i++){
-        if(!strcasecmp(x, a[i])) return 1;
+        if(!strcasecmp(x, a[i])) return i;
     }
 
-    return 0;
+    return -1;
 }
 
 void toLower(char *s, int n)
@@ -25,4 +27,17 @@ void capFirstChar(char *s, int n)
             s[i] = toupper(s[i]);
         }
     }
+}
+
+char* getLineNoNewLine()
+{
+    char* str;
+    size_t n = 0;
+    ssize_t m;
+    
+    m = getline(&str, &n, stdin);
+
+    str[m-1] = 0;
+
+    return str;
 }
