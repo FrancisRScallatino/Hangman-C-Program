@@ -1,20 +1,18 @@
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -g
 
-MYps: Hangman.o Draw.o Answer.o InProc.o
-	$(CC) $(CFLAGS) $^ -o Hangman
+CFILES = Hangman.c Draw.c Answer.c InProc.c
+OBJECTS = Hangman.o Draw.o Answer.o InProc.o
 
-Hangman.o: Hangman.c
-	$(CC) $(CFLAGS) -c Hangman.c
+BINARY = Hangman
 
-Draw.o: Draw.c Draw.h
-	$(CC) $(CFLAGS) -c Draw.c
+all: $(BINARY)
 
-Answer.o: Answer.c Answer.h
-	$(CC) $(CFLAGS) -c Answer.c
+$(BINARY): $(OBJECTS)
+	$(CC) $(CFLAGS) -o $@ $^
 
-InProc.o: InProc.c InProc.h
-	$(CC) $(CFLAGS) -c InProc.c
+%.o: %.c %.h
+	$(CC) $(CFLAGS) -c $^
 
 clean:
-	rm -rf *.o Hangman HangmanD
+	rm -rf $(BINARY) $(OBJECTS)
