@@ -1,5 +1,8 @@
 #include <stdio.h>
 
+#include "Draw.h"
+#include "Answer.h"
+
 void draw(int wGuessCount)
 {
     printf("\n--------\n");

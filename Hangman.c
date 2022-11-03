@@ -15,6 +15,9 @@
 
 void newLine(){printf("\n");}
 
+//clear the temrinal
+void clear(){printf("\e[1;1H\e[2J");}
+
 //prints all the available categories
 void printCategories(char **cat, int n)
 {
@@ -28,11 +31,11 @@ void printCategories(char **cat, int n)
 
 //check if user entered exit or quit to kill the program
 void checkIfExit(char *str){
-    if(strcmp(str, "exit") == 0 || strcmp(str, "quit") == 0) exit(EXIT_SUCCESS);
+    if(strcmp(str, "exit") == 0 || strcmp(str, "quit") == 0){
+        clear();
+        exit(EXIT_SUCCESS);
+    }
 }
-
-//clear the temrinal
-void clear(){printf("\e[1;1H\e[2J");}
 
 int main ()
 {
@@ -47,6 +50,7 @@ int main ()
     
     printCategories(category, numOfCategories);
     
+    //get category from the user
     printf("Enter here: ");
     char *chosenCategory = getLineNoNewLine();
     checkIfExit(chosenCategory);
@@ -59,15 +63,16 @@ int main ()
 
         printCategories(category, numOfCategories);
 
+        //ask again for a category if one wasn't found
         free(chosenCategory);
         printf("Try again: ");
         chosenCategory = getLineNoNewLine();
         checkIfExit(chosenCategory);
         newLine();
     }
-    toLower(chosenCategory, strlen(chosenCategory)); //normalize the user-given category
-    
     clear();
+
+    //get the prompt player 1 wants others to guess
     printf("You have chosen %s!\nWhat do you want you opponent to guess?\n", category[catIndex]);
     printf("Enter here: ");
     char *name = getLineNoNewLine();
@@ -86,7 +91,7 @@ int main ()
 
         checkIfExit(name);
 
-        if(strcmp(retype, "y") == 0){
+        if(strcmp(retype, "y") == 0){   //if player 1 would like to retype their answer
             printf("Enter here: ");
             free(name);
             name = getLineNoNewLine();
@@ -102,11 +107,17 @@ int main ()
 
     int not1Char = 0;
     int notLetter = 0;
+
+    /**
+     * GAME START
+     * 
+     * repeat until the game is finished, or user calls quit/exit
+     */
     while(1){
         //clear();
-        draw(++answer.wrongcount);
+        draw(answer.wrongcount);
 
-        char *guess = calloc(sizeof(char), 100);
+        char *guess = calloc(sizeof(char), 100);    //allocate a lot of space just in case user tries something weird (-_- )
 
         if(not1Char){
             printf("That means 1 single letter! (-_- )\n");
@@ -114,22 +125,29 @@ int main ()
         if(notLetter){
             printf("Keyword being LETTER!\n");
         }
+
+        //retrieve a guess
         printf("What letter would you like to risk your life on? ");
         guess = getLineNoNewLine();
 
         checkIfExit(guess);
         
-        if(guess[1] != 0){
+        if(guess[1] != 0){  //set error variable if user enter more than 1 character
             not1Char = 1;
+            notLetter = 0;
         }else{
             not1Char = 0;
 
-            if(isalpha(guess[0]) > 0){  //if not alpha
+            if(isalpha(guess[0]) > 0){  //set error variable if user types a non-alphabetic character
                 notLetter = 0;
+
+                if(aContainsG(&answer, guess)){ //answer contains guess
+                    setGuess(&answer, guess, 1);
+                }else{
+                    setGuess(&answer, guess, 0);
+                }
             }else{
                 notLetter = 1;
-
-                //checkGuess(guess);
             }
         }
         

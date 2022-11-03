@@ -11,6 +11,7 @@ typedef struct Answer{
     char *name;     //user-given prompt for player to guess
     char *guess;    //array to store ALL guesses
     int *gWrong;    //array to track if a guess in char *guess is wrong
+    int guessCount; //number of guesses
     int wrongcount; //number of wrong guesses
 }Answer;
 

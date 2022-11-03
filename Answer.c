@@ -12,24 +12,8 @@ Answer Answer_value(char *category, char *name){
     int gCap = 32;
     init.guess = calloc(sizeof(char), gCap);
     init.gWrong = calloc(sizeof(char), gCap);
+    init.guessCount = 0;
     init.wrongcount = 0;
-
-    /*
-    //intialization of matrix of the tokenization of the given answer to guess
-    int wordCount = 10;
-    int cPerWord = 20;
-    init.nameToken = malloc(sizeof(char*)*wordCount);
-    for(int i=0; i<wordCount; i++) init.nameToken[i] = malloc(sizeof(char)*cPerWord);
-
-    char *saveptr = NULL;
-    char *token = strtok_r(name, " ", &saveptr);
-    init.numOfTokens = 0;
-    while(token != NULL){
-        init.numOfTokens++;
-        strcpy(init.nameToken[init.numOfTokens-1], token);
-        printf("New token: %s\n", init.nameToken[init.numOfTokens-1]);
-        token = strtok_r(NULL, " ", &saveptr);
-    }
-    */
+    
     return init;
 }
