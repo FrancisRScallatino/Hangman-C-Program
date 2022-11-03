@@ -65,11 +65,11 @@ int aContainsG(Answer *answer, char *guess)
     }
 }
 
-void setGuess(Answer *answer, char *guess, int wrong)
+void setGuess(Answer *answer, char *guess, int contained)
 {
-    if(wrong){
+    if(!contained){
         answer->guess[answer->guessCount] = guess[0];
-        answer->gWrong[answer->guessCount++] = wrong;
+        answer->gWrong[answer->guessCount++] = contained;
     }else{
         answer->guess[answer->guessCount] = guess[0];
     }

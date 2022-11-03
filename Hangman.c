@@ -142,9 +142,9 @@ int main ()
                 notLetter = 0;
 
                 if(aContainsG(&answer, guess)){ //answer contains guess
-                    setGuess(&answer, guess, 0);
-                }else{
                     setGuess(&answer, guess, 1);
+                }else{
+                    setGuess(&answer, guess, 0);
                 }
             }else{
                 notLetter = 1;
