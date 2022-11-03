@@ -49,12 +49,15 @@ int aContainsG(Answer *answer, char *guess)
 {
     char *gup = malloc(sizeof(char)), *gdown = malloc(sizeof(char));
 
+    //used to compare lowercase version
     gup = strcpy(gup, guess);
     gup[0] = toupper(gup[0]);
 
+    //used to compare uppercase version
     gdown = strcpy(gdown, guess);
     gdown[0] = tolower(gdown[0]);
 
+    //if both upper AND lower case versions aren't contained in answer::name
     if(strstr(answer->name, gup) == NULL && strstr(answer->name, gdown) == NULL){
         return 0;
     }else{
@@ -69,6 +72,5 @@ void setGuess(Answer *answer, char *guess, int wrong)
         answer->gWrong[answer->guessCount++] = wrong;
     }else{
         answer->guess[answer->guessCount] = guess[0];
-        answer->wrongcount++;
     }
 }
