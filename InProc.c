@@ -70,6 +70,7 @@ void setGuess(Answer *answer, char *guess, int contained)
     if(!contained){
         answer->guess[answer->guessCount] = guess[0];
         answer->gWrong[answer->guessCount++]++;
+        answer->wrongcount++;
     }else{
         answer->guess[answer->guessCount++] = guess[0];
     }

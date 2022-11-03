@@ -6,11 +6,12 @@
  */
 #ifndef DRAW_H
 #define DRAW_H
+#include "Answer.h"
 
 /**
  * this function draws a gallows
  * and body of the man depending on how many wrong answers the user has given
  */
-void draw(int wGuessCount);
+void draw(Answer *answer);
 
 #endif

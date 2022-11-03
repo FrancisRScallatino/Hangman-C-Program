@@ -115,7 +115,7 @@ int main ()
      */
     while(1){
         //clear();
-        draw(answer.wrongcount);
+        draw(&answer);
 
         char *guess = calloc(sizeof(char), 100);    //allocate a lot of space just in case user tries something weird (-_- )
 
