@@ -69,8 +69,8 @@ void setGuess(Answer *answer, char *guess, int contained)
 {
     if(!contained){
         answer->guess[answer->guessCount] = guess[0];
-        answer->gWrong[answer->guessCount++] = contained;
+        answer->gWrong[answer->guessCount++]++;
     }else{
-        answer->guess[answer->guessCount] = guess[0];
+        answer->guess[answer->guessCount++] = guess[0];
     }
 }

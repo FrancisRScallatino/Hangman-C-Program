@@ -119,6 +119,14 @@ int main ()
 
         char *guess = calloc(sizeof(char), 100);    //allocate a lot of space just in case user tries something weird (-_- )
 
+        if(answer.guessCount > 0){
+            if(answer.gWrong[answer.guessCount-1]){ //if previous guess is wrong
+                printf("HAH! Nope! Try again c:<\n");
+            }else{
+                printf("Lucky guess >.>\n");
+            }
+        }
+
         if(not1Char){
             printf("That means 1 single letter! (-_- )\n");
         }
