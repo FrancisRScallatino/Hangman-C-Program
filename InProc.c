@@ -78,7 +78,7 @@ void setGuess(Answer *answer, char *guess, int contained)
         answer->guessCount++;
     }else{
         answer->guessCount++;
-        int i;
+        int istart;
 
         //get index of guess within answer->name
         char **gcomp = getUpperLower(guess);
@@ -86,9 +86,9 @@ void setGuess(Answer *answer, char *guess, int contained)
                           strchr(answer->name, gcomp[1][0])};
 
         if(gindex[0] == NULL){
-            i = (int)(gindex[1]-answer->name);
+            istart = (int)(gindex[1]-answer->name);
         }else if(gindex[1] == NULL){
-            i = (int)(gindex[0]-answer->name);
+            istart = (int)(gindex[0]-answer->name);
         }else{
 
             /**
@@ -100,12 +100,12 @@ void setGuess(Answer *answer, char *guess, int contained)
              */
             int a = (int)(gindex[0]-answer->name);
             int b = (int)(gindex[1]-answer->name);
-            i = (a<b)*a + (b<a)*b;
+            istart = (a<b)*a + (b<a)*b;
         }
 
-        for(i; answer->name[i] != 0; i++){
-            if(answer->name[i] == gcomp[0] || answer->name[i] == gcomp[1]){
-                answer->guessed = 1;
+        for(int i = istart; answer->name[i] != 0; i++){
+            if(answer->name[i] == gcomp[0][0] || answer->name[i] == gcomp[1][0]){
+                answer->guessed[i] = 1;
             }
         }
     }
