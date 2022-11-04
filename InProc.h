@@ -26,6 +26,11 @@ void capFirstChar(char *s, int n);
 char* getLineNoNewLine();
 
 /**
+ * returns a malloced array of size 2 with the upper and lower case version of given guess
+ */
+char** getUpperLower(char *guess);
+
+/**
  * return 1 if the answer contains the guess
  * else return 0
  */

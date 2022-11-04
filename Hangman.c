@@ -103,7 +103,7 @@ int main ()
     }
     free(retype);
 
-    Answer answer = Answer_value(chosenCategory, name);
+    Answer answer = Answer_value(category[catIndex], name);
 
     int not1Char = 0;
     int notLetter = 0;
@@ -114,18 +114,20 @@ int main ()
      * repeat until the game is finished, or user calls quit/exit
      */
     while(1){
-        //clear();
+        clear();
         draw(&answer);
-
-        char *guess = calloc(sizeof(char), 100);    //allocate a lot of space just in case user tries something weird (-_- )
+        char *guess;
 
         if(answer.guessCount > 0){
-            if(answer.gWrong[answer.guessCount-1]){ //if previous guess is wrong
+            if(answer.gWrong[answer.wrongcount-1] == guess[0]){ //if previous guess is wrong
                 printf("HAH! Nope! Try again c:<\n");
             }else{
                 printf("Lucky guess >.>\n");
             }
+            free(guess);
         }
+
+        guess = calloc(sizeof(char), 100);    //allocate a lot of space just in case user tries something weird (-_- )
 
         if(not1Char){
             printf("That means 1 single letter! (-_- )\n");
@@ -158,8 +160,6 @@ int main ()
                 notLetter = 1;
             }
         }
-        
-        free(guess);
     }
 
     return (0);

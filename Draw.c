@@ -5,6 +5,8 @@
 
 void draw(Answer *answer)
 {
+    printf("You're category is: %s\n", answer->category);
+
     printf("\n--------\n"); 
     printf("|      |\n");
 
@@ -18,6 +20,8 @@ void draw(Answer *answer)
         printf("|     /|\n");
     }else if(answer->wrongcount > 3){
         printf("|     /|\\\n");
+    }else{
+        printf("|\n");
     }
 
     //abs
@@ -28,8 +32,17 @@ void draw(Answer *answer)
         printf("|     /\n");
     }else if(answer->wrongcount > 6){
         printf("|     / \\\n");
+    }else{
+        printf("|\n");
     }
 
     printf("|\n");
     printf("------------\n");
+
+    //printPrompt(answer);
 }
+
+/*void printPrompt(Answer *answer)
+{
+    
+}*/

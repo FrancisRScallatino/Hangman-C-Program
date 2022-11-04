@@ -45,33 +45,68 @@ char* getLineNoNewLine()
     return str;
 }
 
+char** getUpperLower(char *guess)
+{
+    char **gcomp = malloc(sizeof(char*)*2);
+    gcomp[0] = malloc(sizeof(char));
+    gcomp[1] = malloc(sizeof(char));
+    
+    gcomp[0][0] = toupper(guess[0]);
+    gcomp[1][0] = tolower(guess[0]);
+
+    return gcomp;
+}
+
 int aContainsG(Answer *answer, char *guess)
 {
-    char *gup = malloc(sizeof(char)), *gdown = malloc(sizeof(char));
-
-    //used to compare lowercase version
-    gup = strcpy(gup, guess);
-    gup[0] = toupper(gup[0]);
-
-    //used to compare uppercase version
-    gdown = strcpy(gdown, guess);
-    gdown[0] = tolower(gdown[0]);
+    char **gcomp = getUpperLower(guess);
 
     //if both upper AND lower case versions aren't contained in answer::name
-    if(strstr(answer->name, gup) == NULL && strstr(answer->name, gdown) == NULL){
+    if(strstr(answer->name, gcomp[0]) == NULL && strstr(answer->name, gcomp[1]) == NULL){
         return 0;
     }else{
         return 1;
     }
+
+    free(gcomp);
 }
 
 void setGuess(Answer *answer, char *guess, int contained)
 {
     if(!contained){
-        answer->guess[answer->guessCount] = guess[0];
-        answer->gWrong[answer->guessCount++]++;
-        answer->wrongcount++;
+        answer->gWrong[answer->wrongcount++] = guess[0];
+        answer->guessCount++;
     }else{
-        answer->guess[answer->guessCount++] = guess[0];
+        answer->guessCount++;
+        int i;
+
+        //get index of guess within answer->name
+        char **gcomp = getUpperLower(guess);
+        char *gindex[] = {strchr(answer->name, gcomp[0][0]),
+                          strchr(answer->name, gcomp[1][0])};
+
+        if(gindex[0] == NULL){
+            i = (int)(gindex[1]-answer->name);
+        }else if(gindex[1] == NULL){
+            i = (int)(gindex[0]-answer->name);
+        }else{
+
+            /**
+             * When a is lesser:
+             * (a < b) × a + (b < a) × b = 0 × a + 1 × b = a
+             * 
+             * When b is lesser:
+             * (a < b) × a + (b < a) × b = 1 × a + 0 × b = b
+             */
+            int a = (int)(gindex[0]-answer->name);
+            int b = (int)(gindex[1]-answer->name);
+            i = (a<b)*a + (b<a)*b;
+        }
+
+        for(i; answer->name[i] != 0; i++){
+            if(answer->name[i] == gcomp[0] || answer->name[i] == gcomp[1]){
+                answer->guessed = 1;
+            }
+        }
     }
 }
