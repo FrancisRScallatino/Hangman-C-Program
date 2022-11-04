@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 #include "Draw.h"
 #include "Answer.h"
@@ -37,12 +38,25 @@ void draw(Answer *answer)
     }
 
     printf("|\n");
-    printf("------------\n");
+    printf("------------\n\n");
 
-    //printPrompt(answer);
+    printPrompt(answer);
 }
 
-/*void printPrompt(Answer *answer)
+void printPrompt(Answer *answer)
 {
-    
-}*/
+    int correctGuesses = 0;
+    for(int i=0; answer->name[i] != 0; i++){
+        if(answer->guessed[i]){
+            printf("%c", answer->name[i]);
+            correctGuesses++;
+        }else{
+            printf("_");
+        }
+    }
+    printf("\n");
+
+    if(correctGuesses == (int)strlen(answer->name)){
+        printf("YOU WIN!\n");
+    }
+}

@@ -19,6 +19,6 @@ void draw(Answer *answer);
  * 
  * this function prints the letters guessed, otherwise prints an underscore
  */
-//void printPrompt(Answer *answer);
+void printPrompt(Answer *answer);
 
 #endif
