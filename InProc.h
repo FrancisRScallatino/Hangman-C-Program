@@ -21,7 +21,7 @@ void toLower(char *s, int n);
 void capFirstChar(char *s, int n);
 
 /**
- * Returns a malloced string pointer with removed \n char from getline() function
+ * Returns a malloced string pointer with removed \n char
  */
 char* getLineNoNewLine();
 

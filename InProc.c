@@ -34,13 +34,12 @@ void capFirstChar(char *s, int n)
 
 char* getLineNoNewLine()
 {
-    char* str;
-    size_t n = 0;
-    ssize_t m;
+    int size = sizeof(int)*200;
+    char* str = malloc(size);
     
-    m = getline(&str, &n, stdin);
+    fgets(str, size, stdin);
 
-    str[m-1] = 0;
+    str[strlen(str)-1] = 0;
 
     return str;
 }

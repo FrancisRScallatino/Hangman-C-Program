@@ -1,4 +1,5 @@
 CC = gcc
+#CC = x86_64-w64-mingw32-gcc
 CFLAGS = -Wall -Werror -Wextra -g
 
 CFILES = Hangman.c Draw.c Answer.c InProc.c

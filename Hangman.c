@@ -13,10 +13,16 @@
 #include "Answer.h"
 #include "InProc.h"
 
+#ifdef _WIN32
+#define CLEAR "cls"
+#else //In any other OS
+#define CLEAR "clear"
+#endif
+
 void newLine(){printf("\n");}
 
 //clear the temrinal
-void clear(){printf("\e[1;1H\e[2J");}
+void clear(){system(CLEAR);}
 
 //prints all the available categories
 void printCategories(char **cat, int n)
